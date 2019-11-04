@@ -112,7 +112,7 @@ def get_now(df):
 
         t2 = datetime.fromisoformat(row['date/time'])
         t2 = t2.replace(tzinfo=tz)
-        if abs(now - t2) < timedelta(seconds=600):
+        if abs(now - t2) < timedelta(seconds=60*60*2):
             res.append(row)
     happening = pd.DataFrame(res)
 
@@ -145,7 +145,7 @@ def get_now(df):
 def soccer_tables(df):
 
     tables_string = ''
-    topLeagues = ['England Premier League', 'UEFA Champions League', 'FA Cup', 'England Championship',
+    topLeagues = ['England Premier League', 'UEFA Champions League', 'England FA Cup', 'England Championship',
                   'England EFL Cup', 'UEFA Europa League', 'Spain Primera Liga', 'Italy Serie A',
                   'Scotland Premiership', 'Scotland Championship', 'Germany Bundesliga I', 'France Ligue 1',
                   'CONCACAF Nations League']
