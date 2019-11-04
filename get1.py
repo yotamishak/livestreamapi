@@ -27,7 +27,7 @@ stylesheet = "<style>#livestream{text-align:center;}#eventName{width:70%}#button
 def get_sport(s, df):
     tables_string = ''
 
-    games_in_sport = df.loc[df['sport'] == s]
+    games_in_sport = df.loc[df['sport'] == s].sort_values(by='date/time')
 
     if not games_in_sport.empty:
         if s == 'Soccer':
@@ -119,6 +119,7 @@ def get_now(df):
     happening = pd.DataFrame(res)
 
     if not happening.empty:
+        happening=happening.sort_values(by='date/time')
         table_string = '<table class="table table-hover table-responsive" id="livestream"><thead><th>Date/ Time</th><th>Match</th><th>League/ Sport</th><th>Watch</th></thead>\n<tbody><tr>'
         for _, h in happening.iterrows():
             event = h['league']
