@@ -110,18 +110,18 @@ def join_streams():
                         if c['league'] not in pairs:
                             pairs.update({c['league']: row['league']})
                     continue
+                else:
+                    if match_check(row['match'], c['match']):
+                        b365.at[i, 'betfair'] = True
+                        bf.at[j, 'betfair'] = False
+                        if c['league'] not in pairs:
+                            pairs.update({c['league']: row['league']})
 
-                if match_check(row['match'], c['match']):
-                    b365.at[i, 'betfair'] = True
-                    bf.at[j, 'betfair'] = False
-                    if c['league'] not in pairs:
-                        pairs.update({c['league']: row['league']})
-
-                elif second_check(row, c):
-                    b365.at[i, 'betfair'] = True
-                    bf.at[j, 'betfair'] = False
-                    if c['league'] not in pairs:
-                        pairs.update({c['league']: row['league']})
+                    elif second_check(row, c):
+                        b365.at[i, 'betfair'] = True
+                        bf.at[j, 'betfair'] = False
+                        if c['league'] not in pairs:
+                            pairs.update({c['league']: row['league']})
 
     with open('matches.json', 'w') as f:
         json.dump(pairs, f)

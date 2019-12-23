@@ -128,7 +128,12 @@ def league():
 
     return table
 
+@app.route("/greyhounds")
+def greyhound():
+    df = pd.read_csv('streams.csv')
+    table = get_sport("Greyhounds racing",df)
 
-
+    return table
+    
 if __name__ == '__main__':
     app.run()

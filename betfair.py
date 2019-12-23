@@ -47,7 +47,7 @@ def bf_make_event(e,t,pairs):
             event=sport_clasification.split('.')[0].strip()
             match=sport_clasification.strip()
         else:
-            if sport=='Horse Racing':
+            if sport=='Horse Racing' or sport=='Greyhounds racing':
                 event=''
                 e=sport_clasification.split()
                 for c in e:
