@@ -9,6 +9,7 @@ import re
 
 
 def second_check(event1, event2):
+  
     try:
         t1 = datetime.fromisoformat(event1['date/time'])
         t2 = datetime.fromisoformat(event2['date/time'])
@@ -41,12 +42,15 @@ def second_check(event1, event2):
 def find_close_events(t, df, diff):
     res = []
     for i, row in df.iterrows():
+        
         try:
             t2 = datetime.fromisoformat(row['date/time'])
         except:
             t2 = row['date/time']
+      
         t = t.replace(tzinfo=None)
         t2 = t2.replace(tzinfo=None)
+
         if abs(t - t2) < timedelta(seconds=diff):
             res.append(row)
     return pd.DataFrame(res)
@@ -74,6 +78,8 @@ def match_check(t1, t2):
 
 
 def join_streams():
+    # b365=pd.read_csv('bet365.csv')
+    # bf= pd.read_csv('betfair.csv')
     b365 = get_b365_streams()
     bf = bf_streams()
     with open('matches.json', 'r') as f:
@@ -136,7 +142,7 @@ def join_streams():
     return final_df
 
 
-# join_streams()
+join_streams()
 s = BlockingScheduler()
 s.add_job(join_streams,
           'interval',

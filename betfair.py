@@ -65,10 +65,13 @@ def bf_make_event(e,t,pairs):
     time=t[:5].split(':')
 
     tz = timezone('Etc/GMT+0')
+
+    today=datetime.today()
+    year=datetime|(today.year)
     hour=int(time[0])
     # if hour<1:
     #     hour=24
-    dt=datetime(year=2019,month=int(month),day=int(m[0]),hour=hour,minute=int(time[1]),second=0,microsecond=0,tzinfo=tz)
+    dt=datetime(year=year,month=int(month),day=int(m[0]),hour=hour,minute=int(time[1]),second=0,microsecond=0,tzinfo=tz)
 
     if event in pairs:
         event=pairs[event]
@@ -108,3 +111,4 @@ def sport_fix(s):
     return s
 
 
+get_bf_streams()
